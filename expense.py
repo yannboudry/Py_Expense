@@ -33,6 +33,11 @@ expense_questions = [
 def new_expense(*args):
     infos = prompt(expense_questions)
     # Writing the informations on external file might be a good idea ¯\_(ツ)_/¯
+    try:
+        float(infos['amount'])
+    except:
+        print('Amount must be a number')
+        return
     with open('./users.csv', 'r') as f:
         users = f.read().splitlines()
         if infos['spender'] not in users:
@@ -44,7 +49,7 @@ def new_expense(*args):
             expenses = json.load(f)
             expenses['data'].append(
                 {
-                    "amount": infos['amount'],
+                    "amount": float(infos['amount']),
                     "label": infos['label'],
                     "spender": infos['spender'],
                     "involved": infos['involved']
@@ -54,7 +59,7 @@ def new_expense(*args):
         except json.decoder.JSONDecodeError:
             expenses = {'data': [
                 {
-                    "amount": infos['amount'],
+                    "amount": float(infos['amount']),
                     "label": infos['label'],
                     "spender": infos['spender'],
                     "involved": infos['involved']

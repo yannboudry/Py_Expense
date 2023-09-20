@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "amount": 80.0,
+            "label": "m",
+            "spender": "SIGL",
+            "involved": [
+                "RDuval"
+            ]
+        }
+    ]
+}
